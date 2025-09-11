@@ -1,27 +1,15 @@
 const express = require("express");
+const Idea = require("../models/Idea");
 
 const router = express.Router();
 
-const databaseArr = [
-  {
-    id: 1,
-    idea: "New facebook",
-    tag: "social media",
-  },
-  {
-    id: 2,
-    idea: "New instagram",
-    tag: "social media",
-  },
-  {
-    id: 3,
-    idea: "New discord",
-    tag: "social media",
-  },
-];
-
-router.get("/", (req, res) => {
-  res.json({ success: true, data: databaseArr });
+router.get("/", async (req, res) => {
+  try {
+    const ideas = await Idea.find();
+    res.json({ success: true, data: ideas });
+  } catch (error) {
+    res.status(500).json({ success: false, error: "Server Error" });
+  }
 });
 
 router.get("/:id", (req, res) => {
@@ -36,12 +24,11 @@ router.get("/:id", (req, res) => {
 
 // POST "/api/ideas"
 router.post("/", (req, res) => {
-  const idea = {
-    id: databaseArr.length + 1,
+  const idea = new Idea({
     text: req.body.text,
     tag: req.body.tag,
-    date: new Date().toISOString().slice(0, 10),
-  };
+    username: req.body.username,
+  });
 
   databaseArr.push(idea);
 

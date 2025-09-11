@@ -1,5 +1,11 @@
 const express = require("express");
-const port = 5000;
+require("dotenv").config({ path: "./config/secrets/.env" });
+const connectDB = require("./config/db");
+
+// initialize connection with database
+connectDB();
+
+const port = process.env.PORT;
 
 const app = express();
 
