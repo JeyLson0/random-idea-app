@@ -1,18 +1,12 @@
 import "./css/style.css";
 import "@fortawesome/fontawesome-free/css/all.css";
+import Modal from "./components/Modal";
+import IdeaForm from "./components/IdeaForm";
+import IdeaList from "./components/IdealList";
 
-const modal = document.querySelector("#modal");
-const modalBtn = document.querySelector("#modal-btn");
-
-function open() {
-  modal.style.display = "block";
-}
-
-function outsideClick(e) {
-  if (e.target === modal) {
-    modal.style.display = "none";
-  }
-}
-
-modalBtn.addEventListener("click", open);
-window.addEventListener("click", outsideClick);
+// component created, cleaner and modular to edit
+const modal = new Modal();
+const ideaForm = new IdeaForm();
+ideaForm.render();
+const ideaList = new IdeaList();
+ideaList.render();
