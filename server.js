@@ -1,15 +1,17 @@
 const express = require("express");
 require("dotenv").config({ path: "./config/secrets/.env" });
 const connectDB = require("./config/db");
+// node.js path module
+const path = require("path");
 
-// initialize connection with database
 connectDB();
-
 const port = process.env.PORT;
 
 const app = express();
 
-// Body parser middleware
+// Express static folder
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
