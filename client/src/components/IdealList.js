@@ -1,29 +1,11 @@
+// Import API service
+import IdeasApi from "../services/IdeasApi";
+
 class IdeaList {
   constructor() {
     this.ideaListEl = document.querySelector("#idea-list");
-    this.ideas = [
-      {
-        id: 1,
-        text: "Idea 1",
-        tag: "business",
-        username: "john",
-        date: `1 / 2 / 2023`,
-      },
-      {
-        id: 2,
-        text: "Idea 2",
-        tag: "technology",
-        username: "john",
-        date: `1 / 2 / 2023`,
-      },
-      {
-        id: 3,
-        text: "Idea 3",
-        tag: "Foodtech",
-        username: "john",
-        date: `1 / 2 / 2023`,
-      },
-    ];
+    this.ideas = [];
+    this.getIdeas(); // call fetchAPI()
     this.validTags = new Set();
     this.validTags.add("technology");
     this.validTags.add("software");
@@ -31,6 +13,20 @@ class IdeaList {
     this.validTags.add("education");
     this.validTags.add("health");
     this.validTags.add("inventions");
+  }
+
+  addIdeaToList(idea) {
+    this.ideas.push(idea);
+    this.render();
+  }
+
+  getIdeas() {
+    IdeasApi.getIdeas()
+      .then((res) => res.json())
+      .then((data) => {
+        this.ideas = data.data;
+        this.render();
+      });
   }
 
   getTagClass(tag) {

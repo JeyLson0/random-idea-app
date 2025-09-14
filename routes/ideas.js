@@ -25,6 +25,7 @@ router.get("/:id", async (req, res) => {
 
 // POST "/api/ideas"
 router.post("/", async (req, res) => {
+  console.log(req.body);
   const idea = new Idea({
     text: req.body.text,
     tag: req.body.tag,
