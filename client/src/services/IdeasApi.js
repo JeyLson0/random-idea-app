@@ -1,6 +1,12 @@
 class IdeasApi {
   constructor() {
-    this.apiURL = "http://localhost:5000/api/ideas";
+    // only for development
+    // this.apiURL = "http://localhost:5000/api/ideas";
+
+    // Set this to root/api/ideas during production
+    // bundled JS will be on the same directory with backend
+    // once deployed it should be domain/api/ideas
+    this.apiURL = "/api/ideas";
   }
 
   getIdeas() {

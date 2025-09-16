@@ -58,7 +58,13 @@ function IdeasApi_toPrimitive(t, r) { if ("object" != IdeasApi_typeof(t) || !t) 
 var IdeasApi = /*#__PURE__*/function () {
   function IdeasApi() {
     IdeasApi_classCallCheck(this, IdeasApi);
-    this.apiURL = "http://localhost:5000/api/ideas";
+    // only for development
+    // this.apiURL = "http://localhost:5000/api/ideas";
+
+    // Set this to root/api/ideas during production
+    // bundled JS will be on the same directory with backend
+    // once deployed it should be domain/api/ideas
+    this.apiURL = "/api/ideas";
   }
   return IdeasApi_createClass(IdeasApi, [{
     key: "getIdeas",
@@ -285,8 +291,6 @@ var IdeaForm = /*#__PURE__*/function () {
 }();
 /* harmony default export */ const components_IdeaForm = (IdeaForm);
 ;// ./src/index.js
-
-
 
 
 

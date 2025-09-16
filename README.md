@@ -25,4 +25,4 @@ _Introduction to backend (node.js and express) and database (MongoDB and mongoos
 
 6. models folder contains mongoose which create a schema
 
-NOTE: this build is still not in production. Change webpack to production mode, use font awesome cdn, change API url in API service (add a proxy to webpack config).
+NOTE: Updated prod files
